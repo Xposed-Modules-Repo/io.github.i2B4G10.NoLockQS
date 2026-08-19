@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NoLockQS</string>
+    <string name="module_status_label">Module Status:</string>
+    <string name="status_active">ACTIVE</string>
+    <string name="status_inactive">INACTIVE (Enable in LSPosed)</string>
+    <string name="app_description">NoLockQS prevents the Quick Settings panel from being expanded while your device is locked, securing your connectivity toggles from unauthorized access.</string>
+    <string name="compatibility_info">Compatible with Pixel 7-11 running Android 15-17.</string>
+    <string name="safe_app_info">This app does not collect any data and runs locally on your device.</string>
+</resources>

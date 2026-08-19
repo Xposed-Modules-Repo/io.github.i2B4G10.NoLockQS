@@ -1,0 +1,8 @@
+name=NoLockQS
+version=1.0
+versionCode=1
+author=Developer
+description=Prevents Quick Settings on Lockscreen
+minApiVersion=101
+targetApiVersion=102
+autoHotReload=true
