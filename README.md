@@ -1,6 +1,6 @@
 The NoLockQS project. 
 
-Prevents Access to QuickSettings/Contro Center tiles on a Locked Screen.
+Prevents Access to QuickSettings/Control Center tiles on a Locked Screen for Pixel Phones.
 
 Optimized for Rooted Android 15+, Pixel 7-11 devices Using LSPosed API 101/102 (Vector 2.2).
 
