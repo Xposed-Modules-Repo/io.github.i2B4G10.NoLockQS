@@ -1,4 +1,4 @@
-The NoLockQS project. 
+The NoLockQS Project. 
 
 Prevents Access to QuickSettings/Control Center tiles on a Locked Screen for Pixel Phones.
 
