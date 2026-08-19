@@ -8,11 +8,11 @@ Requirments:
 - Rooted Pixel 7-11 running on Android 15+
 - Vector 2.2 (Minimum)
 
-1.
+1-
 Install the APK on your rooted device.
-2.
+2-
 Open the LSPosed Manager, enable the module, and ensure both System UI and NoLockQS are checked in the scope.
-3.
+3-
 Reboot and the protection will be active!
 
 Collaborators: Just Me!
