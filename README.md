@@ -15,6 +15,8 @@ Open the LSPosed Manager, enable the module, and ensure both System UI and NoLoc
 3.
 Reboot and the protection will be active!
 
+Collaborators: Just Me!
+
 Made in Saudi
 
 You Can show your Love here! https://patreon.com/Dossary
