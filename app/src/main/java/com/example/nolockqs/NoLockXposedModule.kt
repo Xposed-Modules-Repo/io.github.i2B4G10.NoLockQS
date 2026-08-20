@@ -19,7 +19,6 @@ class NoLockXposedModule : XposedModule() {
 
     private companion object {
         const val TAG = "NoLockQS"
-        const val DISABLE2_QUICK_SETTINGS = 1
     }
 
     override fun onPackageReady(param: PackageReadyParam) {
@@ -48,7 +47,33 @@ class NoLockXposedModule : XposedModule() {
         shadeClassNames.forEach { className ->
             try {
                 val clazz = classLoader.loadClass(className)
-                // Intercept the method that determines if the touch should be forwarded to the QS panel
+                
+                // Target setQsExpansionEnabledPolicy directly
+                val setPolicyMethod = clazz.declaredMethods.find { it.name == "setQsExpansionEnabledPolicy" }
+                setPolicyMethod?.let {
+                    hook(it).intercept { chain ->
+                        if (isDeviceSecurelyLocked(chain.thisObject!!)) {
+                            chain.args[0] = false // Force the policy to false (expansion disabled)
+                        }
+                        chain.proceed()
+                    }
+                    hookCount++
+                }
+
+                // Also hook the touch event specifically for handleQsTouch if it exists
+                val qsTouchMethods = clazz.declaredMethods.filter { 
+                    it.name.contains("handleQsTouch") || it.name.contains("computeQsExpansion")
+                }
+                qsTouchMethods.forEach { method ->
+                    hook(method).intercept { chain ->
+                        if (isDeviceSecurelyLocked(chain.thisObject!!)) {
+                            return@intercept false 
+                        }
+                        chain.proceed()
+                    }
+                }
+                
+                // General touch event interception (fallback)
                 val interceptMethods = clazz.declaredMethods.filter { 
                     it.name.contains("onInterceptTouchEvent") || it.name.contains("onTouchEvent") 
                 }
@@ -68,28 +93,6 @@ class NoLockXposedModule : XposedModule() {
             } catch (_: Exception) {}
         }
 
-        // 1. CommandQueue (System-level flag enforcement)
-        try {
-            val commandQueueClass = classLoader.loadClass("com.android.systemui.statusbar.CommandQueue")
-            val disableMethod = commandQueueClass.declaredMethods.find { 
-                it.name == "disable" && (it.parameterCount == 3 || it.parameterCount == 4)
-            }
-            disableMethod?.let {
-                hook(it).intercept { chain ->
-                    val thisObject = chain.thisObject ?: return@intercept chain.proceed()
-                    if (isDeviceSecurelyLocked(thisObject)) {
-                        val state2Index = if (chain.args.size == 4) 2 else 1
-                        val state2 = chain.args[state2Index] as Int
-                        chain.args[state2Index] = state2 or DISABLE2_QUICK_SETTINGS
-                    }
-                    chain.proceed()
-                }
-                hookCount++
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Failed to hook CommandQueue", e)
-        }
-
         // 2. Dynamic Fingerprinting for SceneInteractor (Android 16/17 Flexiglass)
         try {
             var sceneInteractorClass: Class<*>? = null
@@ -102,7 +105,7 @@ class NoLockXposedModule : XposedModule() {
                     if (method.name.contains("change") || method.name.contains("scene") || method.name == "a") { 
                         hook(method).intercept { chain ->
                             val targetScene = chain.args[0]?.toString()?.lowercase() ?: ""
-                            if ((targetScene.contains("shade") || targetScene.contains("quicksettings")) && 
+                            if (targetScene.contains("quicksettings") && 
                                 isDeviceSecurelyLocked(chain.thisObject!!)) {
                                 Log.d(TAG, "Flexiglass: Blocking $targetScene.")
                                 return@intercept null
@@ -115,15 +118,13 @@ class NoLockXposedModule : XposedModule() {
             }
         } catch (_: Exception) {}
 
-        // 3. Dynamic Fingerprinting for Shade Controllers (Android 15+)
-        val shadeClassNamesSecondary = listOf(
-            "com.android.systemui.shade.NotificationPanelViewController",
-            "com.android.systemui.statusbar.phone.NotificationPanelViewController",
+        // 3. Dynamic Fingerprinting for QuickSettings Controllers (Android 15+)
+        val qsClassNames = listOf(
             "com.android.systemui.shade.QuickSettingsController",
             "com.android.systemui.shade.QuickSettingsControllerImpl",
         )
         
-        shadeClassNamesSecondary.forEach { className ->
+        qsClassNames.forEach { className ->
             try {
                 val clazz = classLoader.loadClass(className)
                 clazz.declaredMethods.forEach { method ->
@@ -146,19 +147,6 @@ class NoLockXposedModule : XposedModule() {
                         }
                     }
                 }
-
-                // Specifically hook setQsExpansionEnabledPolicy if it exists (A15 policy override)
-                val setPolicyMethod = clazz.declaredMethods.find { it.name == "setQsExpansionEnabledPolicy" }
-                setPolicyMethod?.let {
-                    hook(it).intercept { chain ->
-                        if (isDeviceSecurelyLocked(chain.thisObject!!)) {
-                            chain.args[0] = false // Force the policy to false (expansion disabled)
-                        }
-                        chain.proceed()
-                    }
-                    hookCount++
-                }
-
             } catch (_: Exception) {}
         }
 
@@ -173,7 +161,7 @@ class NoLockXposedModule : XposedModule() {
                 val clazz = classLoader.loadClass(className)
                 clazz.declaredMethods.forEach { method ->
                     if (method.returnType == Boolean::class.javaPrimitiveType && 
-                        (method.name.contains("isShade") || method.name.contains("isQuickSettings"))) {
+                        method.name.contains("isQuickSettings")) {
                         hook(method).intercept { chain ->
                             if (isDeviceSecurelyLocked(chain.thisObject!!)) false else chain.proceed()
                         }
