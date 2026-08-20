@@ -43,7 +43,7 @@ class NoLockXposedModule : XposedModule() {
         // If we intercept the touch physics at the parent level, it bypasses all Android 15/16/17 logical bugs
         val shadeClassNames = listOf(
             "com.android.systemui.shade.NotificationPanelViewController",
-            "com.android.systemui.statusbar.phone.NotificationPanelViewController"
+            "com.android.systemui.statusbar.phone.NotificationPanelViewController",
         )
         shadeClassNames.forEach { className ->
             try {
@@ -55,7 +55,7 @@ class NoLockXposedModule : XposedModule() {
                 interceptMethods.forEach { method ->
                     hook(method).intercept { chain ->
                         val motionEvent = chain.args.find { it is android.view.MotionEvent } as? android.view.MotionEvent
-                        if (motionEvent != null && isDeviceSecurelyLocked(chain.thisObject!!)) {
+                        if ((motionEvent != null) && isDeviceSecurelyLocked(chain.thisObject!!)) {
                             // If user is swiping down (Y is increasing) and starting near the top (Y < 200)
                             if (motionEvent.action == android.view.MotionEvent.ACTION_DOWN && motionEvent.y < 200) {
                                 // Block the touch event entirely to prevent the shade from recognizing the drag
