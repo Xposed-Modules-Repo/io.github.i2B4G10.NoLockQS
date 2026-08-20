@@ -1,22 +1,20 @@
-The NoLockQS Project. 
+# The NoLockQS Project. 🔐🚫
 
-Prevents Access to QuickSettings/Control Center tiles on a Locked Screen for Pixel Phones.
+## Prevents Access to QuickSettings/Control Center tiles on a Locked Screen for Pixel Phones.
 
-Optimized for Rooted Android 15+, Pixel 7-11 devices Using LSPosed API 101/102 (Vector 2.2).
+## Optimized for Rooted Android 15+, Pixel 7-11 devices Using LSPosed API 101/102 (Vector 2.2).
 
-Requirments: 
-- Rooted Pixel 7-11 running on Android 15+
-- Vector 2.2 (Minimum)
+## Requirements: 
+- Rooted Pixel 7-11 running on Android 15+ 🤖
+- Vector 2.2 (Minimum) 🚀
 
-1-
-Install the APK on your rooted device.
-2-
-Open the LSPosed Manager, enable the module, and ensure both System UI and NoLockQS are checked in the scope.
-3-
-Reboot and the protection will be active!
+## Instructions
+- Install the APK on your rooted device.
+- Open the LSPosed Manager, enable the module, and ensure both System UI and NoLockQS are checked in the scope.
+- Reboot and the protection will be active!
 
 Collaborators: Just Me!
 
-Made in Saudi
+# You Can show your Love here!❤️ https://patreon.com/Dossary
 
-You Can show your Love here! https://patreon.com/Dossary
+## Made in Saudi 🇸🇦
