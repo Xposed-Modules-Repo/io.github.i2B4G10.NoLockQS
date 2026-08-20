@@ -39,6 +39,35 @@ class NoLockXposedModule : XposedModule() {
     private fun applyDeepHooks(classLoader: ClassLoader) {
         var hookCount = 0
 
+        // 1. Direct Touch Interception (The ultimate physical block)
+        // If we intercept the touch physics at the parent level, it bypasses all Android 15/16/17 logical bugs
+        val shadeClassNames = listOf(
+            "com.android.systemui.shade.NotificationPanelViewController",
+            "com.android.systemui.statusbar.phone.NotificationPanelViewController"
+        )
+        shadeClassNames.forEach { className ->
+            try {
+                val clazz = classLoader.loadClass(className)
+                // Intercept the method that determines if the touch should be forwarded to the QS panel
+                val interceptMethods = clazz.declaredMethods.filter { 
+                    it.name.contains("onInterceptTouchEvent") || it.name.contains("onTouchEvent") 
+                }
+                interceptMethods.forEach { method ->
+                    hook(method).intercept { chain ->
+                        val motionEvent = chain.args.find { it is android.view.MotionEvent } as? android.view.MotionEvent
+                        if (motionEvent != null && isDeviceSecurelyLocked(chain.thisObject!!)) {
+                            // If user is swiping down (Y is increasing) and starting near the top (Y < 200)
+                            if (motionEvent.action == android.view.MotionEvent.ACTION_DOWN && motionEvent.y < 200) {
+                                // Block the touch event entirely to prevent the shade from recognizing the drag
+                                return@intercept false 
+                            }
+                        }
+                        chain.proceed()
+                    }
+                }
+            } catch (_: Exception) {}
+        }
+
         // 1. CommandQueue (System-level flag enforcement)
         try {
             val commandQueueClass = classLoader.loadClass("com.android.systemui.statusbar.CommandQueue")
@@ -87,14 +116,14 @@ class NoLockXposedModule : XposedModule() {
         } catch (_: Exception) {}
 
         // 3. Dynamic Fingerprinting for Shade Controllers (Android 15+)
-        val shadeClassNames = listOf(
+        val shadeClassNamesSecondary = listOf(
             "com.android.systemui.shade.NotificationPanelViewController",
             "com.android.systemui.statusbar.phone.NotificationPanelViewController",
             "com.android.systemui.shade.QuickSettingsController",
             "com.android.systemui.shade.QuickSettingsControllerImpl",
         )
         
-        shadeClassNames.forEach { className ->
+        shadeClassNamesSecondary.forEach { className ->
             try {
                 val clazz = classLoader.loadClass(className)
                 clazz.declaredMethods.forEach { method ->
