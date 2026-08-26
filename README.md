@@ -10,7 +10,7 @@
 
 ## Instructions:
 - Install the APK on your rooted device.
-- Open the LSPosed Manager, enable the module, and ensure both System UI and NoLockQS are checked in the scope.
+- Open the LSPosed Manager, enable the module, and check in the scope "What The Module Asks for".
 - Grant Root Privileges (Preferred)
 - Reboot and the Protection will be Active!
 
