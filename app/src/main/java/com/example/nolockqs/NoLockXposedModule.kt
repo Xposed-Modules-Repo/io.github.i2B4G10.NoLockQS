@@ -24,8 +24,28 @@ class NoLockXposedModule : XposedModule() {
     override fun onPackageReady(param: PackageReadyParam) {
         super.onPackageReady(param)
 
+        if (param.packageName == "com.example.nolockqs") {
+            applySelfHook(param.classLoader)
+        }
+
         if (param.packageName == SYSTEM_UI_PACKAGE) {
             applyRootWindowHook(param.classLoader)
+        }
+    }
+
+    private fun applySelfHook(classLoader: ClassLoader) {
+        try {
+            val mainActivityClass = classLoader.loadClass("com.example.nolockqs.MainActivity")
+            val isModuleActiveMethod = mainActivityClass.declaredMethods.find { it.name == "isModuleActive" }
+            isModuleActiveMethod?.let { method ->
+                hook(method).intercept(object : XposedInterface.Hooker {
+                    override fun intercept(chain: XposedInterface.Chain): Any? {
+                        return true
+                    }
+                })
+            }
+        } catch (ignored: Exception) {
+            // Silently ignore
         }
     }
 
