@@ -1,6 +1,6 @@
 name=NoLockQS
-version=1.0
-versionCode=1
+version=1.2
+versionCode=2
 author=Developer
 description=Prevents Quick Settings on Lockscreen
 minApiVersion=101
