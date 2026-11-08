@@ -6,10 +6,10 @@
 
 **Prevents access to the Quick Settings / Control Center tiles and the power menu on the lock screen of rooted Pixel phones.**
 
-[![Latest release](https://img.shields.io/github/v/release/2B-4G10/NoLockQS?label=release&color=DD0E1C)](https://github.com/2B-4G10/NoLockQS/releases/latest)
+[![Latest release](https://img.shields.io/badge/release-v2.8-DD0E1C)](https://github.com/2B-4G10/NoLockQS/releases/latest)
 [![Build](https://github.com/2B-4G10/NoLockQS/actions/workflows/android.yml/badge.svg)](https://github.com/2B-4G10/NoLockQS/actions/workflows/android.yml)
 [![Android 15+](https://img.shields.io/badge/Android-15%2B-3E5C7B?logo=android&logoColor=white)](#requirements)
-[![License](https://img.shields.io/github/license/2B-4G10/NoLockQS?color=3E5C7B)](https://github.com/2B-4G10/NoLockQS/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-3E5C7B)](https://github.com/2B-4G10/NoLockQS/blob/main/LICENSE)
 
 </div>
 
