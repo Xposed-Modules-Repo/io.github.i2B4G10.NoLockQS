@@ -54,11 +54,11 @@ A thief who grabs a locked phone usually goes straight for the pull-down: airpla
 
 NoLockQS hooks Android's own (AOSP) System UI and the framework, so how well it works depends on how much a ROM has rebuilt them.
 
-| ROM | Status |
-|---|---|
-| Pixel stock firmware | ✅ Tested: a Pixel on Android 17, and Android 15, 16 and 17 emulators |
-| LineageOS, crDroid, Evolution X and other AOSP-based ROMs | 🟡 Should work: same System UI code, not yet tested on a real device |
-| Samsung One UI, Xiaomi HyperOS / MIUI, OPPO ColorOS, OnePlus OxygenOS, vivo OriginOS | ❌ Not supported: they replace the Quick Settings panel with their own, which NoLockQS likely doesn't reach |
+| Status | ROMs | Notes |
+|:---:|---|---|
+| ✅<br>**Tested** | ![Pixel](https://img.shields.io/badge/Pixel-4285F4?style=for-the-badge&logo=google&logoColor=white) | A Pixel on Android 17, and Android 15, 16 and 17 emulators |
+| 🟡<br>**Should work** | ![LineageOS](https://img.shields.io/badge/LineageOS-167C80?style=for-the-badge&logo=lineageos&logoColor=white) ![crDroid](https://img.shields.io/badge/crDroid-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![Evolution X](https://img.shields.io/badge/Evolution_X-8E24AA?style=for-the-badge&logo=android&logoColor=white) ![Other AOSP ROMs](https://img.shields.io/badge/Other_AOSP_ROMs-5F6368?style=for-the-badge&logo=android&logoColor=white) | Same System UI code as stock Android, not yet tested on a real device |
+| ❌<br>**Not supported** | ![Samsung One UI](https://img.shields.io/badge/Samsung_One_UI-1428A0?style=for-the-badge&logo=samsung&logoColor=white) ![Xiaomi HyperOS / MIUI](https://img.shields.io/badge/Xiaomi_HyperOS_%2F_MIUI-FF6900?style=for-the-badge&logo=xiaomi&logoColor=white) ![OPPO ColorOS](https://img.shields.io/badge/OPPO_ColorOS-2D683D?style=for-the-badge&logo=oppo&logoColor=white) ![OnePlus OxygenOS](https://img.shields.io/badge/OnePlus_OxygenOS-F5010C?style=for-the-badge&logo=oneplus&logoColor=white) ![vivo OriginOS](https://img.shields.io/badge/vivo_OriginOS-415FFF?style=for-the-badge&logo=vivo&logoColor=white) | They replace the Quick Settings panel with their own, which NoLockQS likely doesn't reach |
 
 On a ROM that isn't a Pixel, check that the pull-down really stays shut while locked, and send the **Diagnostics report** if it doesn't. It lists which protections hooked on your phone.
 
