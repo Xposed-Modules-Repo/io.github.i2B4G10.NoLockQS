@@ -7,7 +7,7 @@
 **A locked phone should stay locked.**<br>
 NoLockQS hides Quick Settings and the power menu on the lock screen, and tells you when someone tries. 🕵️
 
-[![Latest release](https://img.shields.io/badge/release-v2.9-DD0E1C)](https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/releases/latest)
+[![Latest release](https://img.shields.io/badge/release-v2.10-DD0E1C)](https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/releases/latest)
 [![Android 15+](https://img.shields.io/badge/Android-15%2B-3E5C7B?logo=android&logoColor=white)](#-requirements)
 [![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20AR%20%C2%B7%20ZH-3E5C7B)](#-what-you-get)
 [![License](https://img.shields.io/badge/license-Proprietary-3E5C7B)](https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/blob/main/LICENSE)
