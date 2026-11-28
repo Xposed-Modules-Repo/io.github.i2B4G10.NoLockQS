@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/blob/main/README.ar.md">العربية</a> · <b>English</b> · <a href="https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/blob/main/README.zh-CN.md">简体中文</a>
+</p>
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/main/.github/assets/icon.png" width="128" alt="NoLockQS icon">
