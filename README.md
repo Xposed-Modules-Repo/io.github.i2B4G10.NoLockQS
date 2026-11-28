@@ -11,6 +11,13 @@ NoLockQS hides Quick Settings and the power menu on the lock screen, and tells y
 [![Android 15+](https://img.shields.io/badge/Android-15%2B-3E5C7B?logo=android&logoColor=white)](#-requirements)
 [![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20AR%20%C2%B7%20ZH-3E5C7B)](#-what-you-get)
 [![License](https://img.shields.io/badge/license-Proprietary-3E5C7B)](https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/blob/main/LICENSE)
+<br>
+[![Rooted Android](https://img.shields.io/badge/Rooted-Android-00AF9C?logo=magisk&logoColor=white)](#-requirements)
+[![Xposed module](https://img.shields.io/badge/Xposed-Vector%20%C2%B7%20LSPosed-6650A4)](#-installation)
+[![Tested on Android 17](https://img.shields.io/badge/tested-Android%2015%20%C2%B7%2016%20%C2%B7%2017-3DDC84?logo=android&logoColor=white)](#-other-roms)
+[![Pixel](https://img.shields.io/badge/Pixel-ready-4285F4?logo=google&logoColor=white)](#-other-roms)
+[![Kotlin](https://img.shields.io/badge/Kotlin-100%25-7F52FF?logo=kotlin&logoColor=white)](https://github.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/blob/main/app/src/main/java)
+[![Private](https://img.shields.io/badge/privacy-no%20internet%20%C2%B7%20no%20tracking-2E7D32)](#-what-you-get)
 
 <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/main/.github/assets/screenshots/home-dark.png" width="200" alt="Home screen, dark">&nbsp;
 <img src="https://raw.githubusercontent.com/Xposed-Modules-Repo/io.github.i2B4G10.NoLockQS/main/.github/assets/screenshots/history-dark.png" width="200" alt="Blocked attempts, each with its own icon">&nbsp;
